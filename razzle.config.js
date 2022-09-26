@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   options: {
-    // buildType: 'spa',
+    buildType: 'iso',
   },
   plugins: [
     // {

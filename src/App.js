@@ -1,6 +1,6 @@
 import { Route, Switch } from 'react-router-dom';
 import loadable from '@loadable/component';
-import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { Helmet } from 'react-helmet-async';
 
 import Home from './Home';
 
@@ -15,7 +15,7 @@ const CodeSplittingIO = loadable(() => import(/* webpackChunkName: "code-splitti
 import './App.css';
 
 const App = () => (
-  <HelmetProvider>
+  <>
     <Helmet>
       <title>Hello World</title>
     </Helmet>
@@ -27,7 +27,7 @@ const App = () => (
       <Route exact path="/code-splitting-io" component={CodeSplittingIO} />
       <Route exact path="/io" component={IntersectionObserver} />
     </Switch>
-  </HelmetProvider>
+  </>
 );
 
 export default App;

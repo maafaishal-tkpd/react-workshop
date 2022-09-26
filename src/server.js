@@ -9,8 +9,6 @@ import express from 'express';
 
 const razzleAssets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 
-const helmetContext = {};
-
 const sheet = new ServerStyleSheet();
 
 const cssLinksFromAssets = (assets, entrypoint) => {
@@ -35,6 +33,7 @@ server
   .disable('x-powered-by')
   .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
   .get('/*', (req, res) => {
+    const helmetContext = {};
     const context = {};
     const markup = renderToString(
       sheet.collectStyles(
@@ -56,12 +55,7 @@ server
             ${helmet.title.toString()}
               <meta httpEquiv="X-UA-Compatible" content="IE=edge">
               <meta charset="utf-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1">
-              ${helmet.priority.toString()}
-              ${helmet.meta.toString()}
-              ${helmet.link.toString()}
-              ${helmet.script.toString()}
-              ${cssLinksFromAssets(razzleAssets, 'client')}
+              <meta name="viewport" content="width=device-width, initial-scale=1">${helmet.priority.toString()}${helmet.meta.toString()}${helmet.link.toString()}${helmet.script.toString()}${cssLinksFromAssets(razzleAssets, 'client')}
             </head>
             <body>
               <div id="root">${markup}</div>
