@@ -1,6 +1,7 @@
 // Source: https://codesandbox.io/s/5i7gu?file
 
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 import styled from 'styled-components';
 
@@ -102,36 +103,39 @@ const Todo = () => {
   }
 
   return (
-    <div className='todo'>
-    <Container>
-      <Heading>
-        <h1>To-Do List</h1>
-      </Heading>
-      <div>
-        <Input name="taskInput" type="text" onChange={handleChange} value={task} />
-        <Button type="button" onClick={addTask}>
-          <span>ADD</span>
-        </Button>
-      </div>
-      <div>
-        <ul>
-          {items.map((item, index) => {
-            const compId = String(index);
+    <div className="todo">
+      <Helmet>
+        <title>Todo</title>
+      </Helmet>
+      <Container>
+        <Heading>
+          <h1>To-Do List</h1>
+        </Heading>
+        <div>
+          <Input name="taskInput" type="text" onChange={handleChange} value={task} />
+          <Button type="button" onClick={addTask}>
+            <span>ADD</span>
+          </Button>
+        </div>
+        <div>
+          <ul>
+            {items.map((item, index) => {
+              const compId = String(index);
 
-            return (
-              <div key={compId}>
-                <Li>
-                  <span>{item}</span>{' '}
-                  <button type="button" onClick={() => deleteItem(index)}>
-                    X
-                  </button>
-                </Li>
-              </div>
-            );
-          })}
-        </ul>
-      </div>
-    </Container>
+              return (
+                <div key={compId}>
+                  <Li>
+                    <span>{item}</span>{' '}
+                    <button type="button" onClick={() => deleteItem(index)}>
+                      X
+                    </button>
+                  </Li>
+                </div>
+              );
+            })}
+          </ul>
+        </div>
+      </Container>
     </div>
   );
 };
